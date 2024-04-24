@@ -104,3 +104,73 @@ Openshift Login:
    kibana-746f699cc-72qfk                          2/2     Running     0          5m34s
    ```
 </details>
+&nbsp; 
+
+<details>
+<summary>
+Install Instana and prerequisites:
+</summary>
+
+1. Deploy prerequisites runnning script:
+   ```
+   scripts/01a-tracing-install.sh
+   ```
+   To confirm the installation completed successfully you can run the following commands:
+   ```
+   oc get csv -n openshift-distributed-tracing
+   oc get jaeger -n openshift-distributed-tracing
+   ```
+   You should receive a response like this for each command respectively.
+   ```
+   NAME                               DISPLAY                                                 VERSION    REPLACES                           PHASE
+   elasticsearch-operator.v5.6.1      OpenShift Elasticsearch Operator                        5.6.1                                         Succeeded
+   jaeger-operator.v1.39.0-3          Red Hat OpenShift distributed tracing platform          1.39.0-3   jaeger-operator.v1.34.1-5          Succeeded
+   opentelemetry-operator.v0.63.1-4   Red Hat OpenShift distributed tracing data collection   0.63.1-4   opentelemetry-operator.v0.60.0-2   Succeeded
+   ```
+
+   ```
+   NAME                         STATUS    VERSION   STRATEGY   STORAGE   AGE
+   jaeger-all-in-one-inmemory   Running   1.39.0    allinone   memory    18m
+   ```
+2. Set environment variables:
+   ```
+   export ZONE_NAME=BOOTCAMP-ZONE
+   export CLUSTER_NAME=<my-cluster-name>
+   export INSTANA_APP_KEY=<instana-app-key>
+   export INSTANA_SVC_ENDPOINT=<instana-service-endpoint>
+   export INSTANA_SVC_PORT=<instana-service-port>
+   ```
+3. Install Instana running script:
+   ```
+   scripts/01b-instana-install.sh
+   ```
+   To confirm the installation completed successfully you can run the following commands:
+   ```
+   oc get csv -n instana-agent
+   oc get pods -n instana-agent
+   ```
+   You should receive a response like this for each command respectively.
+   ```
+   NAME                               DISPLAY                                                 VERSION    REPLACES                           PHASE
+   cert-manager.v1.11.0               cert-manager                                            1.11.0     cert-manager.v1.10.2               Succeeded
+   elasticsearch-operator.v5.6.2      OpenShift Elasticsearch Operator                        5.6.2      elasticsearch-operator.v5.6.1      Succeeded
+   instana-agent-operator.v2.0.9      Instana Agent Operator                                  2.0.9      instana-agent-operator.v2.0.8      Succeeded
+   jaeger-operator.v1.39.0-3          Red Hat OpenShift distributed tracing platform          1.39.0-3   jaeger-operator.v1.34.1-5          Succeeded
+   opentelemetry-operator.v0.63.1-4   Red Hat OpenShift distributed tracing data collection   0.63.1-4   opentelemetry-operator.v0.60.0-2   Succeeded
+   ```
+
+   ```
+   NAME                  READY   STATUS    RESTARTS   AGE
+   instana-agent-75dkm   1/1     Running   0          5m6s 
+   instana-agent-8gr46   1/1     Running   0          5m6s
+   instana-agent-xpj95   1/1     Running   0          5m6s
+   instana-agent-xxncc   1/1     Running   0          5m6s
+   instana-agent-zvflw   1/1     Running   0          5m6s
+   ```
+4. Set environment variable:
+   ```
+   export CP4I_TRACING=YES
+   ```
+
+</details>
+&nbsp; 
