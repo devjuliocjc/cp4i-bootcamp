@@ -1,6 +1,6 @@
 # Cloud Pak for Integration BootCamp
 
-
+## Prerequisites
 > [!IMPORTANT]
 > This tools need to be installed in order to execute the workshop
 - Ubuntu Linux 22.x or higher
