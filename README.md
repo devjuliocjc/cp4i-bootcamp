@@ -2,9 +2,15 @@
 
 
 > [!IMPORTANT]
-> This tools needed to be installed in order to execute the workshop
+> This tools need to be installed in order to execute the workshop
 - Ubuntu Linux 22.x or higher
-- sudo apt install ssh
-- sudo apt install git
+- SSH Server
+```
+sudo apt install ssh
+```
+- GIT Client
+```
+sudo apt install git
+```
 
 
