@@ -7,4 +7,7 @@ echo "Installing Logging dependencies..."
     oc create -f resources/00d-logging-namespace.yaml
     oc create -f resources/00e-logging-operatorgroup.yaml
     oc create -f resources/00f-logging-subscription.yaml
+sleep 60
+echo "Deploying Logging instance..."
+oc create -f resources/00g-logging-instance-odf.yaml
 echo "Done!"

@@ -13,10 +13,27 @@ sudo apt install ssh
 ```
 sudo apt install git
 ```
+- Openshift command line
+
+   You can download it from here [openshift-client](https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/4.14.17/openshift-client-linux-4.14.17.tar.gz).
 
 ---
 
 ## Components Installation
+
+
+
+<details>
+<summary>
+Get the scripts and resources:
+</summary>
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/fxnaranjo/cp4i-bootcamp
+   ```
+</details>
+&nbsp; 
 
 <details>
 <summary>
@@ -39,7 +56,7 @@ Set environment variables:
 Set a default storage class for your cluster:
 </summary>
 
-1. If you have provisioned your OCP cluster in Tech Zone you can use the following script to set the proper default storage class:
+1. The OCP cluster was provisioned Tech Zone use the following script to set the proper default storage class:
    ```
    scripts/99-odf-tkz-set-scs.sh
    ```
