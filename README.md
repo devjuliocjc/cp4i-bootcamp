@@ -19,6 +19,9 @@ sudo apt install git
 
 ---
 
+> [!NOTE]
+> You will receive the credentials to access the Openshift Cluster in the classroom
+
 ## Components Installation
 
 
