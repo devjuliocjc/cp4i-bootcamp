@@ -1,7 +1,10 @@
-# cp4i-bootcamp
+# Cloud Pak for Integration BootCamp
 
 
-#sudo apt install ssh
+> [!IMPORTANT]
+> This tools needed to be installed in order to execute the workshop
+- Ubuntu Linux 22.x or higher
+- sudo apt install ssh
+- sudo apt install git
 
-#sudo apt install git
 
