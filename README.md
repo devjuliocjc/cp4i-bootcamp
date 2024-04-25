@@ -20,6 +20,10 @@ sudo apt install git
 - [jq](https://stedolan.github.io/jq/)
 - [yq](https://github.com/mikefarah/yq/releases/download/v4.43.1/yq_linux_amd64)
 - [apic cli](https://github.com/fxnaranjo/cp4i-bootcamp/blob/main/apic/toolkit-linux.tgz)
+- keytool
+```
+sudo apt install openjdk-17-jre-headless
+```
 
 
 ---
