@@ -24,7 +24,9 @@ sudo apt install git
 ```
 sudo apt install openjdk-17-jre-headless
 ```
+You also need an account in the folllowing email service to configure APIC:
 
+- [mailtrap](https://mailtrap.io/)
 
 ---
 
@@ -59,6 +61,11 @@ Set environment variables:
 2. Set the OCP type based on the storage classes in your cluster:
    ```
    export OCP_TYPE=ODF
+   ```
+3. Configure mail server Credentials
+   ```
+   export MAILTRAP_USER=<my-mailtrap-user>
+   export MAILTRAP_PWD=<my-mailtrap-pwd>
    ```
 </details>
 &nbsp; 
