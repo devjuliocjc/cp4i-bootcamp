@@ -19,7 +19,7 @@ sudo apt install git
 - openssl
 - [jq](https://stedolan.github.io/jq/)
 - [yq](https://github.com/mikefarah/yq/releases/download/v4.43.1/yq_linux_amd64)
-- [apic cli](https://www.ibm.com/docs/en/api-connect/10.0.x?topic=configuration-installing-toolkit)
+- [apic cli](https://github.com/fxnaranjo/cp4i-bootcamp/blob/main/apic/toolkit-linux.tgz)
 
 
 ---
