@@ -16,6 +16,11 @@ sudo apt install git
 - Openshift command line
 
    You can download it from here [openshift-client](https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/4.14.17/openshift-client-linux-4.14.17.tar.gz).
+- openssl
+- [jq](https://stedolan.github.io/jq/)
+- [yq](https://github.com/mikefarah/yq/releases/download/v4.43.1/yq_linux_amd64)
+- [apic cli](https://www.ibm.com/docs/en/api-connect/10.0.x?topic=configuration-installing-toolkit)
+
 
 ---
 
