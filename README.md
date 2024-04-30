@@ -438,3 +438,92 @@ Deploy APIC:
    ```
 </details>
 &nbsp;
+
+<details>
+<summary>
+Deploy Event Streams: 
+</summary>
+
+1. Install Event Streams Catalog Source:
+   ```
+   oc create -f catalog-sources/${CP4I_VER}/08-event-streams-catalog-source-3.3.1.yaml
+   ```
+   Confirm the catalog source has been deployed successfully before moving to the next step running the following command: 
+   ```
+   oc get pods -n openshift-marketplace | grep ibm-eventstreams
+   ```
+   You should get a response like this:
+   ```
+   ibm-eventstreams-catalog-f9zhs                                    1/1     Running     0             14h
+   ```
+2. Install Event Streams Operator:
+   ```
+   oc create -f subscriptions/${CP4I_VER}/05-event-streams-subscription.yaml
+   ```
+   Confirm the operator has been deployed successfully before moving to the next step running the following command:
+   ```
+   oc get pods -n openshift-operators | grep eventstreams-cluster
+   ```
+   You should get a response like this:
+   ```
+   eventstreams-cluster-operator-fb7796569-nxn8d                     1/1     Running     0          13h
+   ```
+3. Deploy Event Streams instance:
+   ```
+   oc create -f instances/${CP4I_VER}/${OCP_TYPE}/05-event-streams-instance.yaml
+   ```
+   Confirm the instance has been deployed successfully before moving to the next step running the following command:
+   ```
+   oc get eventstreams -n tools
+   ```
+   Note this will take few minutes, so be patient, and at some point you may see some errors, but at the end you should get a response like this:
+   ```
+   NAME      STATUS
+   es-demo   Ready
+   ```
+4. Create topics and users:
+   ```
+   oc create -f resources/02a-es-initial-config.yaml
+   ```
+5. Enable Kafka Connect:
+   ```
+   scripts/08c-event-streams-kafka-connect-config.sh
+   ```
+   Confirm the instance has been deployed successfully before moving to the next step running the following command:
+   ```
+   oc get kafkaconnects -n tools
+   ```
+   Note this will take few minutes, but at the end you should get a response like this:
+   ```
+   NAME                  DESIRED REPLICAS   READY
+   jgr-connect-cluster   1                  True
+   ```
+6. Enable Kafka Bridge (Optional):
+   ```
+   scripts/08d-event-streams-kafka-bridge-config.sh
+   ```
+   Confirm the instance has been deployed successfully running the following command:
+   ```
+   oc get kafkabridge -n tools
+   ```
+   You should get a response like this:
+   ```
+   NAME                 DESIRED REPLICAS   READY
+   jgr-es-demo-bridge   1                  True
+   ```
+7. Enable Kafka Connector:
+   ```
+   scripts/08e-event-streams-kafka-connector-datagen-config.sh
+   ```
+   Confirm the instances has been deployed successfully before moving to the next step running the following command:
+   ```
+   oc get kafkaconnector -n tools
+   ```
+   Note this will take few minutes, but at the end you should get a response like this:
+   ```
+   NAME                 CLUSTER               CONNECTOR CLASS                                                         MAX TASKS   READY
+   kafka-datagen        jgr-connect-cluster   com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector   1           True
+   kafka-datagen-avro   jgr-connect-cluster   com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector   1           True
+   ```
+</details>
+&nbsp;
