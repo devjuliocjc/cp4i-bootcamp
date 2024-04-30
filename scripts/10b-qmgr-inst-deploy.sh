@@ -34,19 +34,7 @@ done
 if [ $(oc get queuemanager --no-headers -n tools | awk '{print $2}') != "Running" ]
 then
     echo "Something is wrong!"
-    curl --ssl-reqd \
-         --url "smtp://smtp.mailtrap.io:2525" \
-         --user "${MAILTRAP_USER}:${MAILTRAP_PWD}" \
-         --mail-from cp4i-admin@ibm.com \
-         --mail-rcpt cp4i-user@ibm.com \
-         --upload-file email-files/10b-qmgr-inst-deploy-failure.txt
 else
     echo "Queue Manager is Ready."
-    curl --ssl-reqd \
-         --url "smtp://smtp.mailtrap.io:2525" \
-         --user "${MAILTRAP_USER}:${MAILTRAP_PWD}" \
-         --mail-from cp4i-admin@ibm.com \
-         --mail-rcpt cp4i-user@ibm.com \
-         --upload-file email-files/10b-qmgr-inst-deploy-success.txt
 fi
 echo "Done!"
