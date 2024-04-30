@@ -13,6 +13,10 @@ sudo apt install ssh
 ```
 sudo apt install git
 ```
+- curl command
+```
+sudo apt install curl
+```
 - Openshift command line
 
    You can download it from here [openshift-client](https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/4.14.21/openshift-client-linux-4.14.21.tar.gz).
