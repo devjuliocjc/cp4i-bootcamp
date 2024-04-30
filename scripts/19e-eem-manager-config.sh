@@ -17,6 +17,7 @@ ES_NAMESPACE='tools'
 # PREPARE CONFIG CONTENT #
 ##########################
 EEM_API=$(oc get route -n $EEM_NAMESPACE ${EEM_INST_NAME}-ibm-eem-admin -ojsonpath='https://{.spec.host}')
+echo "EEM_API:"$EEM_API
 ES_BOOTSTRAP_SERVER=$(oc get eventstreams ${ES_INST_NAME} -n ${ES_NAMESPACE} -o=jsonpath='{range .status.kafkaListeners[*]}{.name} {.bootstrapServers}{"\n"}{end}' | awk '$1=="authsslsvc" {print $2}')
 ES_BOOTSTRAP_SERVER=$(echo ${ES_BOOTSTRAP_SERVER%:*})
 #ES_CERTIFICATE=$(oc get eventstreams $ES_INST_NAME -n $ES_NAMESPACE -o jsonpath='{.status.kafkaListeners[?(@.name=="authsslsvc")].certificates[0]}')
@@ -41,6 +42,7 @@ curl -X POST -s -k \
      --write-out '%{response_code}' \
      $EEM_API/eem/clusters
 clusterId=$(jq .id eem-response-data.json)
+echo "Cluster ID is:"$clusterId
 topics=("CANCELLATIONS" "CUSTOMERS.NEW" "DOOR.BADGEIN" "ORDERS.NEW" "SENSOR.READINGS" "STOCK.MOVEMENT" "cp4i-es-demo-topic")
 for topic in "${topics[@]}"
 do
