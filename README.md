@@ -827,7 +827,7 @@ Install License Service:
 
 1. Install License Service Catalog Source:
    ```
-   oc apply -f catalog-sources/${CP4I_VER}/02a-license-service-catalog-source.yaml
+   oc create -f catalog-sources/${CP4I_VER}/02a-license-service-catalog-source.yaml
    ```
    Confirm the catalog source has been deployed successfully before moving to the next step running the following command: 
    ```
@@ -861,7 +861,7 @@ Install License Service:
    Note: Make sure you wait long enough to see the instance as well as the operator.
 5. Install License Reporter Catalog Source:
    ```
-   oc apply -f catalog-sources/${CP4I_VER}/02b-license-reporter-catalog-source.yaml
+   oc create -f catalog-sources/${CP4I_VER}/02b-license-reporter-catalog-source.yaml
    ```
    Confirm the catalog source has been deployed successfully before moving to the next step running the following command: 
    ```
@@ -873,7 +873,7 @@ Install License Service:
    ```
 6. Install License Reporter Operator:
    ```
-   oc apply -f subscriptions/${CP4I_VER}/00-license-reporter-subscription.yaml
+   oc create -f subscriptions/${CP4I_VER}/00-license-reporter-subscription.yaml
    ```
    Confirm the operator has been deployed successfully before moving to the next step running the following command:
    ```
@@ -885,7 +885,7 @@ Install License Service:
    ```
 7. Deploy a License Reporter instance:
    ```
-   oc apply -f instances/${CP4I_VER}/${OCP_TYPE}/00-license-reporter-instance.yaml
+   oc create -f instances/${CP4I_VER}/${OCP_TYPE}/00-license-reporter-instance.yaml
    ```
    Confirm the instance has been deployed successfully before moving to the next step running the following command:
    ```
