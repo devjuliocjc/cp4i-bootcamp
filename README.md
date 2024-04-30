@@ -791,3 +791,31 @@ Deploy App Connect:
       ```
 </details>
 &nbsp; 
+
+<details>
+<summary>
+Configure APIC for demo: 
+</summary>
+
+1. Publish draft assets:
+   ```
+   scripts/14a-apic-create-apis-draft.sh
+   ```
+2. Configure Catalogs:
+   ```
+   scripts/14b-apic-config-catalogs-publish-apis.sh
+   ```
+3. Set App Developer password:
+   ```
+   export APPDEV_PWD=F020kw31xx!
+   ```
+4. Create New Consumer Organization:
+   ```
+   scripts/14c-apic-new-consumer-org.sh
+   ```
+5. Create Apps and Subscriptions:
+   ```
+   scripts/14d-apic-create-apps-subscription.sh
+   ```
+</details>
+&nbsp; 
