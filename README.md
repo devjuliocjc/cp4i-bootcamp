@@ -514,3 +514,91 @@ Deploy Event Streams:
    ```
 </details>
 &nbsp;
+
+<details>
+<summary>
+Deploy Event Endpoint Management: 
+</summary>
+
+1. Install EEM Catalog Source:
+   ```
+   oc create -f catalog-sources/${CP4I_VER}/13-eem-catalog-source-11.1.3.yaml
+   ```
+   Confirm the catalog source has been deployed successfully before moving to the next step running the following command: 
+   ```
+   oc get pods -n openshift-marketplace | grep ibm-eventendpointmanagement
+   ```
+   You should get a response like this:
+   ```
+   ibm-eventendpointmanagement-catalog-vm7zf                         1/1     Running     0              3d23h
+   ```
+2. Install EEM Operator:
+   ```
+   oc create -f subscriptions/${CP4I_VER}/09-eem-subscription.yaml
+   ```
+   Confirm the operator has been deployed successfully before moving to the next step running the following command:
+   ```
+   oc get pods -n openshift-operators | grep ibm-eem
+   ```
+   You should get a response like this:
+   ```
+   ibm-eem-operator-58b798fb99-lg9sp                                 1/1     Running     0              3d23h
+   ```
+3. Set passwords via environment variables:
+   ```
+   export EEM_ADMIN_PWD=admin
+   export EEM_USER_PWD=admin
+   ```
+4. Deploy EEM Manager instance:
+   ```
+   scripts/19a-eem-manager-inst-deploy.sh
+   ```
+   Confirm the instance has been deployed successfully before moving to the next step running the following command:
+   ```
+   oc get eventendpointmanagement -n tools
+   ```
+   Note this will take few minutes, so be patient, but at the end you should get a response like this:
+   ```
+   NAME           PHASE     RECONCILED VERSION   UI ENDPOINT                                                                                       GATEWAY ENDPOINT
+   eem-mgr-demo   Running   11.1.1               https://eem-mgr-demo-ibm-eem-manager-tools.apps.6597480c8e1478001153ba0d.cloud.techzone.ibm.com   https://eem-mgr-demo-ibm-eem-gateway-tools.apps.6597480c8e1478001153ba0d.cloud.techzone.ibm.com
+   ```
+5. Deploy EEM Gateway instance:
+   ```
+   scripts/19b-eem-gateway-inst-deploy.sh
+   ```
+   Confirm the instance has been deployed successfully before moving to the next step running the following command:
+   ```
+   oc get eventgateway -n tools
+   ```
+   Note this will take few minutes, so be patient, but at the end you should get a response like this:
+   ```
+   NAME          PHASE     RECONCILED VERSION   ENDPOINT
+   eem-gw-demo   Running   11.1.1               https://eem-gw-demo-ibm-egw-rt-tools.apps.6597480c8e1478001153ba0d.cloud.techzone.ibm.com
+   ```
+6. Integrate EEM with APIC instance (optional):
+   1. Run script:
+      ```
+      scripts/19c-eem-tls-profiles-apic-config.sh
+      ```
+   2. Run script:
+      ```
+      scripts/19d-eem-gateway-apic-config.sh
+      ```
+   3. Set environment variable:
+      ```
+      export EEM_APIC_INT=YES
+      ```
+7. Get token for post deployment configuration:
+
+   Follow instructions listed [here](https://ibm.github.io/event-automation/eem/security/api-tokens/#creating-a-token)
+
+8. Set environment variable for token:
+   ```
+   export EEM_TOKEN=<my-eem-token>
+   ```
+9. Populate EEM Catalog:
+   ```
+   scripts/19e-eem-manager-config.sh
+   ```
+</details>
+&nbsp; 
