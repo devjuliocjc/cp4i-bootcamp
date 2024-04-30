@@ -152,9 +152,9 @@ Install Instana and prerequisites:
    ```
    export ZONE_NAME=BOOTCAMP-ZONE
    export CLUSTER_NAME=<my-cluster-name>
-   export INSTANA_APP_KEY=<instana-app-key>
-   export INSTANA_SVC_ENDPOINT=<instana-service-endpoint>
-   export INSTANA_SVC_PORT=<instana-service-port>
+   export INSTANA_APP_KEY=ORiJrirMTj6PiA67APP16g
+   export INSTANA_SVC_ENDPOINT=ingress-coral-saas.instana.io
+   export INSTANA_SVC_PORT=443
    ```
 3. Install Instana running script:
    ```

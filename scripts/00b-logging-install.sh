@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # This script requires the oc command being installed in your environment 
 echo "Invoking script to install ElasticSearch..."
 scripts/00x-elastic-install.sh 
@@ -10,4 +10,5 @@ echo "Installing Logging dependencies..."
 sleep 60
 echo "Deploying Logging instance..."
 oc create -f resources/00g-logging-instance-odf.yaml
+sleep 120
 echo "Done!"

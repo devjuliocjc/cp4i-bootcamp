@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # This script requires the oc command being installed in your environment 
 echo "ZONE_NAME is set to" $ZONE_NAME
 echo "CLUSTER_NAME is set to" $CLUSTER_NAME
