@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # This script requires the oc command being installed in your environment
 # This script requires the apic command being installed in your environment
 if [ ! command -v oc &> /dev/null ]; then echo "oc could not be found"; exit 1; fi;
