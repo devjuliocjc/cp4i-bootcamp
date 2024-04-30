@@ -13,7 +13,7 @@ CONFIG_DESCRIPTION="Policy to connect to Demo Event Streams Cluster"
 # PREPARE CONFIG CONTENT #
 ##########################
 echo "Packaging Policy..."
-mkdir CP4IESDEMOSCRAM && cp -a ../cp4i-ace-artifacts/CP4IESDEMOSCRAM/. CP4IESDEMOSCRAM/
+mkdir CP4IESDEMOSCRAM && cp -a cp4i-ace-artifacts/CP4IESDEMOSCRAM/. CP4IESDEMOSCRAM/
 #ES_BOOTSTRAP_SERVER=$(oc get eventstreams ${ES_INST_NAME} -n ${ES_NAMESPACE} -o=jsonpath='{range .status.kafkaListeners[*]}{.type} {.bootstrapServers}{"\n"}{end}' | awk '$1=="external" {print $2}')
 ES_BOOTSTRAP_SERVER=$(oc get eventstreams ${ES_INST_NAME} -n ${ES_NAMESPACE} -o=jsonpath='{range .status.kafkaListeners[*]}{.name} {.bootstrapServers}{"\n"}{end}' | awk '$1=="external" {print $2}')
 ( echo "cat <<EOF" ; cat CP4IESDEMOSCRAM/es-demo.policyxml ;) | \

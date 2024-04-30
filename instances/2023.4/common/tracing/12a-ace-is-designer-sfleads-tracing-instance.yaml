@@ -25,9 +25,10 @@ spec:
   version: '12.0'
   barURL: 
     - >-
-      https://github.com/gomezrjo/cp4idemo/raw/main/barfiles/SFLeadsX.bar
+      https://github.com/gomezrjo/cp4idemo/raw/main/barfiles/SFLeads.bar
   configurations:
     - github-barauth
+    - ace-sf-designer-account
   telemetry:
     tracing:
       openTelemetry:

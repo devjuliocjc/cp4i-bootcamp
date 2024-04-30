@@ -21,7 +21,7 @@ cat <<EOF >ace-setdbparms-data-es-scram.txt
 truststore::truststorePass dummy $TRUSTSTORE_PWD
 kafka::esdemoSecId $ES_USER_ID $ES_USER_PWD
 EOF
-CONFIG_DATA_BASE64=$(base64 -i ace-setdbparms-data-es-scram.txt)
+CONFIG_DATA_BASE64=$(base64 -i -w 0 ace-setdbparms-data-es-scram.txt)
 ########################
 # CREATE CONFIGURATION #
 ########################

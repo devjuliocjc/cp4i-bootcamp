@@ -11,7 +11,7 @@ CONFIG_DESCRIPTION="Policy to configure default values for CP4I Demo"
 # PREPARE CONFIG CONTENT #
 ##########################
 echo "Packaging Policy..."
-mkdir CP4IDEMO && cp -a ../cp4i-ace-artifacts/CP4IDEMO/. CP4IDEMO/
+mkdir CP4IDEMO && cp -a cp4i-ace-artifacts/CP4IDEMO/. CP4IDEMO/
 zip -r CP4IDEMO.zip CP4IDEMO
 CONFIG_CONTENT_BASE64=$(base64 -i -w 0 CP4IDEMO.zip)
 ( echo "cat <<EOF" ; cat templates/template-ace-config-content.yaml ;) | \

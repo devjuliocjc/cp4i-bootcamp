@@ -11,7 +11,7 @@ CONFIG_DESCRIPTION="Policy to connect to Demo Queue Manager"
 # PREPARE CONFIG CONTENT #
 ##########################
 echo "Packaging Policy..."
-mkdir CP4iQMGRDEMO && cp -a ../cp4i-ace-artifacts/CP4iQMGRDEMO/. CP4iQMGRDEMO/
+mkdir CP4iQMGRDEMO && cp -a cp4i-ace-artifacts/CP4iQMGRDEMO/. CP4iQMGRDEMO/
 zip -r CP4iQMGRDEMO.zip CP4iQMGRDEMO
 CONFIG_CONTENT_BASE64=$(base64 -i -w 0 CP4iQMGRDEMO.zip)
 ( echo "cat <<EOF" ; cat templates/template-ace-config-content.yaml ;) | \
