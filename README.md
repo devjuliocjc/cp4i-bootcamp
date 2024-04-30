@@ -277,7 +277,7 @@ Deploy Platform UI:
 
 1. Install Platform UI Catalog Source:
    ```
-   oc apply -f catalog-sources/${CP4I_VER}/03-platform-navigator-catalog-source-7.2.2.yaml
+   oc create -f catalog-sources/${CP4I_VER}/03-platform-navigator-catalog-source-7.2.2.yaml
    ```
    Confirm the catalog source has been deployed successfully before moving to the next step running the following command: 
    ```
@@ -289,7 +289,7 @@ Deploy Platform UI:
    ```
 2. Install Platform UI Operator:
    ```
-   oc apply -f subscriptions/${CP4I_VER}/01-platform-navigator-subscription.yaml
+   oc create -f subscriptions/${CP4I_VER}/01-platform-navigator-subscription.yaml
    ```
    Confirm the operator has been deployed successfully before moving to the next step running the following command:
    ```
@@ -301,7 +301,7 @@ Deploy Platform UI:
    ```
 3. Deploy a Platform UI instance:
    ```
-   oc apply -f instances/${CP4I_VER}/common/01-platform-navigator-instance.yaml
+   oc create -f instances/${CP4I_VER}/common/01-platform-navigator-instance.yaml
    ```
    Confirm the instance has been deployed successfully before moving to the next step running the following command:
    ```
