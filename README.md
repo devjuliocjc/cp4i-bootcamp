@@ -322,12 +322,12 @@ Deploy Platform UI:
 
 <details>
 <summary>
-Deploy Asset Repo (optional): 
+Deploy Asset Repo: 
 </summary>
 
 1. Install Asset Repo Catalog Source:
    ```
-   oc apply -f catalog-sources/${CP4I_VER}/04-asset-repo-catalog-source-1.6.2.yaml
+   oc create -f catalog-sources/${CP4I_VER}/04-asset-repo-catalog-source-1.6.2.yaml
    ```
    Confirm the catalog source has been deployed successfully before moving to the next step running the following command: 
    ```
@@ -339,7 +339,7 @@ Deploy Asset Repo (optional):
    ```
 2. Install Asset Repo Operator:
    ```
-   oc apply -f subscriptions/${CP4I_VER}/02-asset-repo-subscription.yaml
+   oc create -f subscriptions/${CP4I_VER}/02-asset-repo-subscription.yaml
    ```
    Confirm the operator has been deployed successfully before moving to the next step running the following command:
    ```
@@ -351,7 +351,7 @@ Deploy Asset Repo (optional):
    ```
 3. Deploy an Asset Repo instance:
    ```
-   oc apply -f instances/${CP4I_VER}/${OCP_TYPE}/02-asset-repo-ai-instance.yaml
+   oc create -f instances/${CP4I_VER}/${OCP_TYPE}/02-asset-repo-ai-instance.yaml
    ```
    Confirm the instance has been deployed successfully before moving to the next step running the following command:
    ```
