@@ -189,4 +189,67 @@ Install Instana and prerequisites:
    ```
 
 </details>
+&nbsp;
+
+<details>
+<summary>
+F) Install Common Serviecs and its pre-requisites:
+</summary>   
+
+1. Install Cert Manager Operator:
+   ```
+   oc create -f resources/00-cert-manager-namespace.yaml
+   oc create -f resources/00-cert-manager-operatorgroup.yaml
+   oc create -f resources/00-cert-manager-subscription.yaml
+   ```
+   Confirm the subscription has been completed successfully before moving to the next step running the following command:
+   ```
+   oc get pods -n cert-manager-operator
+   ```
+   You should get a response like this:
+   ```
+   NAME                                                        READY   STATUS    RESTARTS   AGE
+   cert-manager-operator-controller-manager-7f779b98b4-2f64r   2/2     Running   0          13h
+   ```
+2. Install Postgress SQL Catalog Source:
+   ```
+   oc create -f catalog-sources/${CP4I_VER}/01-postgress-sql-catalog-source-4.18.0.yaml
+   ```
+   Confirm the catalog source has been deployed successfully before moving to the next step running the following command:
+   ```
+   oc get pods -n openshift-marketplace | grep postgresql
+   ```
+   You should get a response like this:
+   ```
+   cloud-native-postgresql-catalog-jsmbk                             1/1     Running     0             14h
+   ```
+3. Install Common Services Catalog Source:
+   ```
+   oc create -f catalog-sources/${CP4I_VER}/02-common-services-catalog-source-4.4.0.yaml
+   ```
+   Confirm the catalog source has been deployed successfully before moving to the next step running the following command:
+   ```
+   oc get pods -n openshift-marketplace | grep opencloud
+   ```
+   You should get a response like this:
+   ```
+   opencloud-operators-fhbfd                                         1/1     Running     0             14h
+   ```
+4. Create the Common Services namespace:
+   ```
+   oc create namespace ibm-common-services
+   ```
+5. Install Common Services Operator:
+   ```
+   oc create -f subscriptions/${CP4I_VER}/00-common-service-subscription.yaml
+   ```
+   Confirm the operator has been deployed successfully before moving to the next step running the following command:
+   ```
+   oc get pods -n openshift-operators | grep ibm-common-service
+   ```
+   You should get a response like this:
+   ```
+   ibm-common-service-operator-8c9b944f4-nkkgb                       1/1     Running     0          14h
+   ```
+</details>
 &nbsp; 
