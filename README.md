@@ -193,7 +193,7 @@ Install Instana and prerequisites:
 
 <details>
 <summary>
-F) Install Common Serviecs and its pre-requisites:
+Install Common Serviecs and its pre-requisites:
 </summary>   
 
 1. Install Cert Manager Operator:
@@ -250,6 +250,22 @@ F) Install Common Serviecs and its pre-requisites:
    You should get a response like this:
    ```
    ibm-common-service-operator-8c9b944f4-nkkgb                       1/1     Running     0          14h
+   ```
+</details>
+&nbsp; 
+
+<details>
+<summary>
+Create namespaces with the corresponding entitlement key:
+</summary>
+
+1. Set your entitlement key:
+   ```
+   export ENT_KEY=<my-key>
+   ```
+2. Create namespaces:
+   ```
+   scripts/02a-cp4i-ns-key-config.sh
    ```
 </details>
 &nbsp; 
