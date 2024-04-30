@@ -17,10 +17,10 @@ read -p "Press <Enter> to execute script..."
 if [ -z "$CP4I_TRACING" ]
 then
     echo "Deploying Queue Manager instance without tracing..."
-    oc apply -f instances/${CP4I_VER}/${OCP_TYPE}/09-qmgr-ace-single-instance.yaml
+    oc create -f instances/${CP4I_VER}/${OCP_TYPE}/09-qmgr-ace-single-instance.yaml
 else
     echo "Deploying Queue Manager instance with tracing enabled..."
-    oc apply -f instances/${CP4I_VER}/${OCP_TYPE}/tracing/09-qmgr-ace-single-tracing-instance.yaml
+    oc create -f instances/${CP4I_VER}/${OCP_TYPE}/tracing/09-qmgr-ace-single-tracing-instance.yaml
 fi
 i=0
 echo "Waiting for the Queue Manager instance to get ready..."

@@ -48,10 +48,16 @@ keytool -importkeystore -srckeystore artifacts/qmgr-server-tls.p12 -srcstoretype
 # Just be aware you need to have at least the MQ Client installed in your workstation        #
 #
 echo "Validating if MQ Client is installed..."
-if [ ! command -v runmqakm &> /dev/null ]; then echo "runmqakm could not be found."; exit 1; fi;
-echo "Creating KeyStore..."
-runmqakm -keydb -create -db artifacts/mqclientkey.kdb -pw password -type cms -stash
-runmqakm -cert -add -db artifacts/mqclientkey.kdb -label mqservercert -file artifacts/qmgr-server-tls.crt -format ascii -stashed
+#if [ ! command -v runmqakm &> /dev/null ]; then echo "runmqakm could not be found."; exit 1; fi;
+if command -v runmqakm > /dev/null 2>&1; then
+    echo "Program exists"
+    echo "Creating KeyStore..."
+    runmqakm -keydb -create -db artifacts/mqclientkey.kdb -pw password -type cms -stash
+r   unmqakm -cert -add -db artifacts/mqclientkey.kdb -label mqservercert -file artifacts/qmgr-server-tls.crt -format ascii -stashed
+else
+    echo "runmqakm could not be found."
+fi
+
 #
 #######################################################################################
 echo "Cleaning up temp files..."

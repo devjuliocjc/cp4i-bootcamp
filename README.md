@@ -610,7 +610,7 @@ Deploy Enterprise Messaging - MQ:
 
 1. Install MQ Catalog Source:
    ```
-   oc apply -f catalog-sources/${CP4I_VER}/09-mq-catalog-source-3.1.0.yaml 
+   oc create -f catalog-sources/${CP4I_VER}/09-mq-catalog-source-3.1.0.yaml 
    ```
    Confirm the catalog source has been deployed successfully before moving to the next step running the following command: 
    ```
@@ -622,7 +622,7 @@ Deploy Enterprise Messaging - MQ:
    ```
 2. Install MQ Operator:
    ```
-   oc apply -f subscriptions/${CP4I_VER}/06-mq-subscription.yaml
+   oc create -f subscriptions/${CP4I_VER}/06-mq-subscription.yaml
    ```
    Confirm the operator has been deployed successfully before moving to the next step running the following command:
    ```
