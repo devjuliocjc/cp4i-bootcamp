@@ -602,3 +602,69 @@ Deploy Event Endpoint Management:
    ```
 </details>
 &nbsp; 
+
+<details>
+<summary>
+Deploy Enterprise Messaging - MQ: 
+</summary>
+
+1. Install MQ Catalog Source:
+   ```
+   oc apply -f catalog-sources/${CP4I_VER}/09-mq-catalog-source-3.1.0.yaml 
+   ```
+   Confirm the catalog source has been deployed successfully before moving to the next step running the following command: 
+   ```
+   oc get pods -n openshift-marketplace | grep ibmmq
+   ```
+   You should get a response like this:
+   ```
+   ibmmq-operator-catalogsource-4h9ql                                1/1     Running     0              3d23h
+   ```
+2. Install MQ Operator:
+   ```
+   oc apply -f subscriptions/${CP4I_VER}/06-mq-subscription.yaml
+   ```
+   Confirm the operator has been deployed successfully before moving to the next step running the following command:
+   ```
+   oc get pods -n openshift-operators | grep ibm-mq
+   ```
+   You should get a response like this:
+   ```
+   ibm-mq-operator-5965468479-btnkh                                  1/1     Running     0               3d23h
+   ```
+3. Set MQ namespace environment variable:
+   ```
+   export MQ_NAMESPACE=cp4i-mq
+   ```
+4. Create certificates and extra route:
+   ```
+   scripts/10a-qmgr-pre-config.sh
+   ```
+5. Create configmap with MQ configuration:
+   ```
+   oc create -f resources/03c-qmgr-mqsc-config.yaml
+   ```
+6. Deploy MQ Queue Manager instance:
+   ```
+   scripts/10b-qmgr-inst-deploy.sh
+   ```
+   Confirm the instance has been deployed successfully before moving to the next step running the following command:
+   ```
+   oc get queuemanager -n tools
+   ```
+   Note this will take few minutes, but at the end you should get a response like this:
+   ```
+   NAME        PHASE
+   qmgr-demo   Running
+   ```
+7. Deploy Kafka Connect MQ Connectors (optional):
+   1. MQ Source Connector:
+      ```
+      oc create -f resources/02b-es-mq-source.yaml
+      ```
+   2. MQ Sink Connector:
+      ```
+      oc create -f resources/02c-es-mq-sink.yaml
+      ```
+</details>
+&nbsp;
