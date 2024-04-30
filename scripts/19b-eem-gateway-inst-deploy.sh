@@ -5,5 +5,5 @@ EEM_GATEWAY_ROUTE=$(oc get route "${EEM_INST_NAME}-ibm-eem-gateway" -n $EEM_NAME
 ( echo "cat <<EOF" ; cat instances/${CP4I_VER}/common/20-eem-gateway-instance.yaml ;) | \
     EEM_GATEWAY_ROUTE=${EEM_GATEWAY_ROUTE} \
     sh > temp-eem-gateway-instance.yaml
-oc apply -f temp-eem-gateway-instance.yaml
+oc create -f temp-eem-gateway-instance.yaml
 rm -f temp-eem-gateway-instance.yaml
