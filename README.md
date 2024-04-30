@@ -269,3 +269,53 @@ Create namespaces with the corresponding entitlement key:
    ```
 </details>
 &nbsp; 
+
+<details>
+<summary>
+Deploy Platform UI:
+</summary>
+
+1. Install Platform UI Catalog Source:
+   ```
+   oc apply -f catalog-sources/${CP4I_VER}/03-platform-navigator-catalog-source-7.2.2.yaml
+   ```
+   Confirm the catalog source has been deployed successfully before moving to the next step running the following command: 
+   ```
+   oc get pods -n openshift-marketplace | grep ibm-integration-platform-navigator
+   ```
+   You should get a response like this:
+   ```
+   ibm-integration-platform-navigator-catalog-xsm4w                  1/1     Running     0             14h
+   ```
+2. Install Platform UI Operator:
+   ```
+   oc apply -f subscriptions/${CP4I_VER}/01-platform-navigator-subscription.yaml
+   ```
+   Confirm the operator has been deployed successfully before moving to the next step running the following command:
+   ```
+   oc get pods -n openshift-operators | grep ibm-integration-platform-navigator
+   ```
+   You should get a response like this:
+   ```
+   ibm-integration-platform-navigator-operator-6489bb9b7-tcnz8       1/1     Running     0          14h
+   ```
+3. Deploy a Platform UI instance:
+   ```
+   oc apply -f instances/${CP4I_VER}/common/01-platform-navigator-instance.yaml
+   ```
+   Confirm the instance has been deployed successfully before moving to the next step running the following command:
+   ```
+   oc get platformnavigator -n tools
+   ```
+   You should get a response like this:
+   ```
+   NAME             REPLICAS   VERSION      STATUS   READY   LASTUPDATE   AGE   MESSAGE
+   cp4i-navigator   3          2023.4.1-0   Ready    True    13h          14h   Platform UI has been provisioned.
+   ```
+4. Once the Platform UI instance is up and running get the access info:
+   ```
+   scripts/03b-cp4i-access-info.sh
+   ```
+   Note the password is temporary and you will be required to change it the first time you log into Platform UI.
+</details>
+&nbsp; 
