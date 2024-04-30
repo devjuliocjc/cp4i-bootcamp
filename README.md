@@ -367,7 +367,7 @@ Deploy Asset Repo:
 
 <details>
 <summary>
-J) Deploy APIC: 
+Deploy APIC: 
 </summary>
 
 1. Install DataPower Catalog Source:
