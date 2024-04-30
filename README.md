@@ -299,7 +299,7 @@ Deploy Platform UI:
    ```
    ibm-integration-platform-navigator-operator-6489bb9b7-tcnz8       1/1     Running     0          14h
    ```
-3. Deploy a Platform UI instance:
+3. Deploy a Platform UI instance (this may take 15 minutes):
    ```
    oc create -f instances/${CP4I_VER}/common/01-platform-navigator-instance.yaml
    ```
@@ -319,3 +319,48 @@ Deploy Platform UI:
    Note the password is temporary and you will be required to change it the first time you log into Platform UI.
 </details>
 &nbsp; 
+
+<details>
+<summary>
+Deploy Asset Repo (optional): 
+</summary>
+
+1. Install Asset Repo Catalog Source:
+   ```
+   oc apply -f catalog-sources/${CP4I_VER}/04-asset-repo-catalog-source-1.6.2.yaml
+   ```
+   Confirm the catalog source has been deployed successfully before moving to the next step running the following command: 
+   ```
+   oc get pods -n openshift-marketplace | grep ibm-integration-asset-repository
+   ```
+   You should get a response like this:
+   ```
+   ibm-integration-asset-repository-catalog-7cm4f                    1/1     Running     0             14h
+   ```
+2. Install Asset Repo Operator:
+   ```
+   oc apply -f subscriptions/${CP4I_VER}/02-asset-repo-subscription.yaml
+   ```
+   Confirm the operator has been deployed successfully before moving to the next step running the following command:
+   ```
+   oc get pods -n openshift-operators | grep ibm-integration-asset-repository
+   ```
+   You should get a response like this:
+   ```
+   ibm-integration-asset-repository-operator-7d7785d9b5-thcgd        1/1     Running     0          14h
+   ```
+3. Deploy an Asset Repo instance:
+   ```
+   oc apply -f instances/${CP4I_VER}/${OCP_TYPE}/02-asset-repo-ai-instance.yaml
+   ```
+   Confirm the instance has been deployed successfully before moving to the next step running the following command:
+   ```
+   oc get assetrepository -n tools
+   ```
+   You should get a response like this:
+   ```
+   NAME            PHASE   VERSION      AGE
+   asset-repo-ai   Ready   2023.4.1-0   14h
+   ```
+</details>
+&nbsp;
