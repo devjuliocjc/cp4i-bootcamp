@@ -44,11 +44,11 @@ then
            EEM_ADMIN_PWD=${EEM_ADMIN_PWD} \
            EEM_USER_PWD=${EEM_USER_PWD} \
            sh > eem-user-credentials.json
-        SECRET_DATA_BASE64=$(base64 -i eem-user-credentials.json)
+        SECRET_DATA_BASE64=$(base64 -i -w 0 eem-user-credentials.json)
         echo $SECRET_DATA_BASE64
         oc patch secret ${EEM_INST_NAME}-ibm-eem-user-credentials -n $EEM_NAMESPACE --patch '{"data":{"user-credentials.json":"'$SECRET_DATA_BASE64'"}}' --type=merge
 #        oc patch secret ${EEM_INST_NAME}-ibm-eem-user-credentials -n $EEM_NAMESPACE --patch '{"data":{"user-credentials.json":"ewogICAgInVzZXJzIjogWwogICAgICAgIHsKICAgICAgICAgICAgInVzZXJuYW1lIjogImVlbS1hZG1pbiIsCiAgICAgICAgICAgICJwYXNzd29yZCI6ICJUaDEkSVNUaDNBZG0xblBhJFNXMFJkIgogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgICAidXNlcm5hbWUiOiAiZXMtdXNlciIsCiAgICAgICAgICAgICJwYXNzd29yZCI6ICJNeVUkZXJQYVMkV29yRCIKICAgICAgICB9CiAgICBdCn0K"}}' --type=merge
-        SECRET_DATA_BASE64=$(base64 -i resources/10-eem-user-roles.json)
+        SECRET_DATA_BASE64=$(base64 -i -w 0 resources/10-eem-user-roles.json)
         echo $SECRET_DATA_BASE64
         oc patch secret ${EEM_INST_NAME}-ibm-eem-user-roles -n $EEM_NAMESPACE --patch '{"data":{"user-mapping.json":"'$SECRET_DATA_BASE64'"}}' --type=merge
 #        oc patch secret ${EEM_INST_NAME}-ibm-eem-user-roles -n $EEM_NAMESPACE --patch '{"data":{"user-mapping.json":"ewogICAgIm1hcHBpbmdzIjogWwogICAgICAgIHsKICAgICAgICAgICAgImlkIjogImVlbS1hZG1pbiIsCiAgICAgICAgICAgICJyb2xlcyI6IFsKICAgICAgICAgICAgICAgICJhdXRob3IiCiAgICAgICAgICAgIF0KICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICAgImlkIjogImVzLXVzZXIiLAogICAgICAgICAgICAicm9sZXMiOiBbCiAgICAgICAgICAgICAgICAidmlld2VyIgogICAgICAgICAgICBdCiAgICAgICAgfQogICAgXQp9"}}' --type=merge
