@@ -498,20 +498,7 @@ Deploy Event Streams:
    NAME                  DESIRED REPLICAS   READY
    jgr-connect-cluster   1                  True
    ```
-6. Enable Kafka Bridge (Optional):
-   ```
-   scripts/08d-event-streams-kafka-bridge-config.sh
-   ```
-   Confirm the instance has been deployed successfully running the following command:
-   ```
-   oc get kafkabridge -n tools
-   ```
-   You should get a response like this:
-   ```
-   NAME                 DESIRED REPLICAS   READY
-   jgr-es-demo-bridge   1                  True
-   ```
-7. Enable Kafka Connector:
+6. Enable Kafka Connector:
    ```
    scripts/08e-event-streams-kafka-connector-datagen-config.sh
    ```
