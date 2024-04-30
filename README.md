@@ -310,7 +310,7 @@ Deploy Platform UI:
    You should get a response like this:
    ```
    NAME             REPLICAS   VERSION      STATUS   READY   LASTUPDATE   AGE   MESSAGE
-   cp4i-navigator   3          2023.4.1-0   Ready    True    13h          14h   Platform UI has been provisioned.
+   cp4i-navigator   1          2023.4.1-0   Ready    True    13h          14h   Platform UI has been provisioned.
    ```
 4. Once the Platform UI instance is up and running get the access info:
    ```
@@ -349,7 +349,7 @@ Deploy Asset Repo:
    ```
    ibm-integration-asset-repository-operator-7d7785d9b5-thcgd        1/1     Running     0          14h
    ```
-3. Deploy an Asset Repo instance:
+3. Deploy an Asset Repo instance (this may take 5 minutes):
    ```
    oc create -f instances/${CP4I_VER}/${OCP_TYPE}/02-asset-repo-ai-instance.yaml
    ```

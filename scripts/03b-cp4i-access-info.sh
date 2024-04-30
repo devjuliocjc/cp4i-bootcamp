@@ -1,4 +1,4 @@
-#!/bin/basj
+#!/bin/bash
 # This script requires the oc command being installed in your environment
 if [ ! command -v oc &> /dev/null ]; then echo "oc could not be found"; exit 1; fi;
 if [ -z "$CP4I_VER" ]; then echo "CP4I_VER not set, it must be provided on the command line."; exit 1; fi;
