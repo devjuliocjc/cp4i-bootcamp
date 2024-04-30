@@ -749,7 +749,7 @@ Deploy App Connect:
       1. Set Environment Variables:  
          ```
          export SF_USER=fnaranjo@fxn.com
-         export SF_PWD=A80i76gj1983dkpFG97T1y5ByVr3ZLepgzzHDJi
+         export SF_PWD=Dr4g0nball1983grSxKlnXWtQpXTISUZbsFsm7
          export SF_CLIENT_ID=3MVG9FMtW0XJDLd0_VsoneRJQoAKAWhBwmWlGyDaNRQ7sGkk3ZIWO6uqHpZ1SX.khFqOx6G3ALcyL.zKi8iz8
          export SF_CLIENT_SECRET=2819D935729B9288EB456CB9CAB088D647353906784E8FFC6E9AD6AF41A14120
          export SF_LOGIN_URL=https://fxncom-dev-ed.my.salesforce.com
