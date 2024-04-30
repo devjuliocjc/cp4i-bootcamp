@@ -468,7 +468,7 @@ Deploy Event Streams:
    ```
    eventstreams-cluster-operator-fb7796569-nxn8d                     1/1     Running     0          13h
    ```
-3. Deploy Event Streams instance:
+3. Deploy Event Streams instance (this may take 15 minutes):
    ```
    oc create -f instances/${CP4I_VER}/${OCP_TYPE}/05-event-streams-instance.yaml
    ```
