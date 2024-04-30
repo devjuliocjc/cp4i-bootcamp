@@ -819,3 +819,88 @@ Configure APIC for demo:
    ```
 </details>
 &nbsp; 
+
+<details>
+<summary>
+Install License Service: 
+</summary>
+
+1. Install License Service Catalog Source:
+   ```
+   oc apply -f catalog-sources/${CP4I_VER}/02a-license-service-catalog-source.yaml
+   ```
+   Confirm the catalog source has been deployed successfully before moving to the next step running the following command: 
+   ```
+   oc get pods -n openshift-marketplace | grep ibm-licensing
+   ```
+   You should get a response like this:
+   ```
+   ibm-licensing-catalog-qqg67                                       1/1     Running     0              40s
+   ```
+2. Create namespace:
+   ```
+   oc create namespace ibm-licensing
+   ```
+3. Enable Operator Group in namespace:
+   ```
+   oc create -f resources/00-license-service-operatorgroup.yaml
+   ```
+4. Install License Service Operator:
+   ```
+   oc create -f subscriptions/${CP4I_VER}/00-license-service-subscription.yaml
+   ```
+   Confirm the operator has been deployed successfully before moving to the next step running the following command:
+   ```
+   oc get pod -n ibm-licensing | grep ibm-licensing
+   ```
+   You should get a response like this:
+   ```
+   ibm-licensing-operator-79759f7c69-zd679           1/1     Running   0          6m47s
+   ibm-licensing-service-instance-59bf9dcd9c-svwqw   1/1     Running   0          3m50s
+   ```
+   Note: Make sure you wait long enough to see the instance as well as the operator.
+5. Install License Reporter Catalog Source:
+   ```
+   oc apply -f catalog-sources/${CP4I_VER}/02b-license-reporter-catalog-source.yaml
+   ```
+   Confirm the catalog source has been deployed successfully before moving to the next step running the following command: 
+   ```
+   oc get pods -n openshift-marketplace | grep ibm-license-service-reporter
+   ```
+   You should get a response like this:
+   ```
+   ibm-license-service-reporter-operator-catalog-rf8cg               1/1     Running     0              104s
+   ```
+6. Install License Reporter Operator:
+   ```
+   oc apply -f subscriptions/${CP4I_VER}/00-license-reporter-subscription.yaml
+   ```
+   Confirm the operator has been deployed successfully before moving to the next step running the following command:
+   ```
+   oc get pod -n ibm-licensing | grep ibm-license-service-reporter
+   ```
+   You should get a response like this:
+   ```
+   ibm-license-service-reporter-operator-7c7549c696-q4776   1/1     Running   0          50s
+   ```
+7. Deploy a License Reporter instance:
+   ```
+   oc apply -f instances/${CP4I_VER}/${OCP_TYPE}/00-license-reporter-instance.yaml
+   ```
+   Confirm the instance has been deployed successfully before moving to the next step running the following command:
+   ```
+   oc get pod -n ibm-licensing | grep lsr-instance
+   ```
+   After a few minutes you should get a response like this:
+   ```
+   ibm-license-service-reporter-ibm-lsr-instance-6c5dbbbc8d-hdwqk   4/4     Running   0          2m8s
+   ``` 
+8. Configure Data Source:
+   ```
+   scripts/04c-license-reporter-data-source-config.sh
+   ```
+9. Get License Service Reporter console access info:
+   ```
+   scripts/99-lsr-console-access-info.sh
+   ```
+</details>
