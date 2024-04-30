@@ -24,9 +24,9 @@ oc get EventEndpointManagement eem-demo-mgr -n tools -o json \
   .spec.manager.apic += {"clientSubjectDN":"CN=ingress-ca"} | 
   .spec.manager.tls += {"trustedCertificates":[{"certificate":"ca.crt","secretName":($APIC_INST_NAME + "-cpd")}]}' \
   | oc apply -f -
-oc get secret ${APIC_INST_NAME}-ingress-ca -n ${APIC_NAMESPACE} -o jsonpath="{.data.ca\.crt}" | base64 -D > ${APIC_INST_NAME}-ca.pem
-oc get secret ${APIC_INST_NAME}-ingress-ca -n ${APIC_NAMESPACE} -o jsonpath="{.data.tls\.crt}" | base64 -D > ${APIC_INST_NAME}-tls-crt.pem
-oc get secret ${APIC_INST_NAME}-ingress-ca -n ${APIC_NAMESPACE} -o jsonpath="{.data.tls\.key}" | base64 -D > ${APIC_INST_NAME}-tls-key.pem
+oc get secret ${APIC_INST_NAME}-ingress-ca -n ${APIC_NAMESPACE} -o jsonpath="{.data.ca\.crt}" | base64 -d > ${APIC_INST_NAME}-ca.pem
+oc get secret ${APIC_INST_NAME}-ingress-ca -n ${APIC_NAMESPACE} -o jsonpath="{.data.tls\.crt}" | base64 -d > ${APIC_INST_NAME}-tls-crt.pem
+oc get secret ${APIC_INST_NAME}-ingress-ca -n ${APIC_NAMESPACE} -o jsonpath="{.data.tls\.key}" | base64 -d > ${APIC_INST_NAME}-tls-key.pem
 APIC_MGMT_SERVER=$(oc get route "${APIC_INST_NAME}-mgmt-platform-api" -n $APIC_NAMESPACE -o jsonpath="{.spec.host}")
 APIC_ADMIN_PWD=$(oc get secret "${APIC_INST_NAME}-mgmt-admin-pass" -n $APIC_NAMESPACE -o jsonpath="{.data.password}"| base64 -d)
 #################
