@@ -575,8 +575,8 @@ Deploy Event Endpoint Management:
    NAME          PHASE     RECONCILED VERSION   ENDPOINT
    eem-gw-demo   Running   11.1.1               https://eem-gw-demo-ibm-egw-rt-tools.apps.6597480c8e1478001153ba0d.cloud.techzone.ibm.com
    ```
-6. Integrate EEM with APIC instance (optional):
-   1. Run script:
+6. Integrate EEM with APIC instance:
+   1. Run script (wait for eem pod to restart):
       ```
       scripts/19c-eem-tls-profiles-apic-config.sh
       ```
