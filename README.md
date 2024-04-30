@@ -672,3 +672,122 @@ Deploy Enterprise Messaging - MQ:
       ```
 </details>
 &nbsp;
+
+<details>
+<summary>
+Deploy App Connect: 
+</summary>
+
+1. Install App Connect Catalog Source:
+   ```
+   oc create -f catalog-sources/${CP4I_VER}/10-app-connect-catalog-source-11.3.0.yaml 
+   ```
+   Confirm the catalog source has been deployed successfully before moving to the next step running the following command: 
+   ```
+   oc get pods -n openshift-marketplace | grep appconnect
+   ```
+   You should get a response like this:
+   ```
+   appconnect-operator-catalogsource-qt2p5                           1/1     Running     0              3d23h
+   ```
+2. Install App Connect Operator:
+   ```
+   oc create -f subscriptions/${CP4I_VER}/07-app-connect-subscription.yaml
+   ```
+   Confirm the operator has been deployed successfully before moving to the next step running the following command:
+   ```
+   oc get pods -n openshift-operators | grep ibm-appconnect
+   ```
+   You should get a response like this:
+   ```
+   ibm-appconnect-operator-7d789b5b4c-cr8qw                          1/1     Running     2 (3d4h ago)    3d23h
+   ```
+3. Deploy Dashboard instance:
+   ```
+   oc create -f instances/${CP4I_VER}/${OCP_TYPE}/06-ace-dashboard-instance.yaml
+   ```
+   Confirm the instance has been deployed successfully before moving to the next step running the following command:
+   ```
+   oc get dashboard -n tools
+   ```
+   Note this will take few minutes, but at the end you should get a response like this:
+   ```
+   NAME            RESOLVEDVERSION   REPLICAS   CUSTOMIMAGES   STATUS   URL                                                                                   AGE
+   ace-dashboard   12.0.10.0-r3      1          false          Ready    https://ace-dashboard-ui-tools.apps.6597480c8e1478001153ba0d.cloud.techzone.ibm.com   3d23h
+   ```
+4. Deploy Designer Authoring instance:  
+   1. Deploy Designer Authoring instance (optional)
+   ```
+   oc create -f instances/${CP4I_VER}/${OCP_TYPE}/08-ace-designer-local-ai-instance.yaml
+   ```
+   Confirm the instance has been deployed successfully before moving to the next step running the following command:
+   ```
+   oc get designerauthoring -n tools
+   ```
+   Note this will take few minutes, but at the end you should get a response like this:
+   ```
+   NAME              RESOLVEDVERSION   URL                                                                                     CUSTOMIMAGES   STATUS   AGE
+   ace-designer-ai   12.0.10.0-r3      https://ace-designer-ai-ui-tools.apps.6597480c8e1478001153ba0d.cloud.techzone.ibm.com   false          Ready    3d23h
+   ```
+5. Create Bar Auth Configuration:
+   ```
+   scripts/11-ace-config-barauth-github.sh
+   ```
+6. Create Policy Configuration to integrate with MQ:
+      ```
+      scripts/12a-ace-config-policy-mq.sh
+      ```
+7. Deploy Integration Runtime instances related to MQ and the API:
+      ```
+      scripts/12c-ace-is-apis-inst-deploy.sh
+      ```
+      You can check the status using the following command:
+      ```
+      oc get integrationruntimes -n tools
+      ```
+8. Configure Sales Force Connector (optional):
+      1. Set Environment Variables:  
+         ```
+         export SF_USER=fnaranjo@fxn.com
+         export SF_PWD=A80i76gj1983dkpFG97T1y5ByVr3ZLepgzzHDJi
+         export SF_CLIENT_ID=3MVG9FMtW0XJDLd0_VsoneRJQoAKAWhBwmWlGyDaNRQ7sGkk3ZIWO6uqHpZ1SX.khFqOx6G3ALcyL.zKi8iz8
+         export SF_CLIENT_SECRET=2819D935729B9288EB456CB9CAB088D647353906784E8FFC6E9AD6AF41A14120
+         export SF_LOGIN_URL=https://fxncom-dev-ed.my.salesforce.com
+         ```
+      2. Create Sales Force Account Configuration:
+         ```
+         scripts/12b-ace-config-accounts-sf.sh
+         ```
+      3. Set Environment Variable:
+         ```
+         export SF_CONNECTOR=YES
+         ```
+9. Deploy Integration Runtime instance related to SF:
+      ```
+      scripts/12d-ace-is-sf-inst-deploy.sh
+      ```
+10. Create Configurations related to ES:
+      ```
+      scripts/15a-ace-config-policy-es-scram.sh
+      scripts/15b-ace-config-setdbparms-es-scram.sh
+      scripts/15c-ace-config-truststore-es.sh
+      ```
+11. Deploy Integration Runtime instance related to ES:
+      ```
+      scripts/15d-ace-is-extra-inst-deploy.sh
+      ```
+12. Create Configuration for User Defined Policy:
+      ```
+      scripts/16-ace-config-policy-udp.sh
+      ```
+13. Create Configurations related to eMail server:
+      ```
+      scripts/17a-ace-config-policy-email.sh
+      scripts/17b-ace-config-setdbparms-email.sh
+      ```
+14. Deploy Integration Runtime instance related to eMail:
+      ```
+      scripts/18a-ace-is-kafka-inst-deploy.sh
+      ```
+</details>
+&nbsp; 
