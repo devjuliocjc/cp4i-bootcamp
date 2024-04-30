@@ -364,3 +364,77 @@ Deploy Asset Repo:
    ```
 </details>
 &nbsp;
+
+<details>
+<summary>
+J) Deploy APIC: 
+</summary>
+
+1. Install DataPower Catalog Source:
+   ```
+   oc create -f catalog-sources/${CP4I_VER}/05-datapower-catalog-source-1.9.1.yaml
+   ```
+   Confirm the catalog source has been deployed successfully before moving to the next step running the following command: 
+   ```
+   oc get pods -n openshift-marketplace | grep ibm-datapower
+   ```
+   You should get a response like this:
+   ```
+   ibm-datapower-operator-catalog-8kmfg                              1/1     Running     0             14h
+   ```
+2. Install APIC Catalog Source:
+   ```
+   oc create -f catalog-sources/${CP4I_VER}/07-api-connect-catalog-source-5.1.0.yaml
+   ```
+   Confirm the catalog source has been deployed successfully before moving to the next step running the following command: 
+   ```
+   oc get pods -n openshift-marketplace | grep ibm-apiconnect
+   ```
+   You should get a response like this:
+   ```
+   ibm-apiconnect-catalog-8hk4q                                      1/1     Running     0             14h
+   ```
+3. Install APIC Operator (including DataPower):
+   ```
+   oc create -f subscriptions/${CP4I_VER}/04-api-connect-subscription.yaml
+   ```
+   Confirm the operators have been deployed successfully before moving to the next step running the following commands:
+   ```
+   oc get pods -n openshift-operators | grep datapower
+   oc get pods -n openshift-operators | grep ibm-apiconnect
+   ```
+   You should get responses like these:
+   ```
+   datapower-operator-55cd67ddd9-m2s89                               1/1     Running     0          14h
+   datapower-operator-conversion-webhook-974b5c64d-lql8r             1/1     Running     0          14h
+   ```
+   ```
+   ibm-apiconnect-7fcdd447c7-qh8wh                                   1/1     Running     0          14h
+   ```
+4. Deploy APIC instance with some extra features enabled (this may take 30 minutes):
+   ```
+   scripts/07d-apic-inst-deploy-instana.sh
+   ```
+   Confirm the installation completed successfully after receiving the email before moving to the next step running the following commands:
+   ```
+   oc get apiconnectcluster -n tools
+   ```
+   Note this will take almost 30 minutes, so be patient, and at the end you should get a response like this:
+   ```
+   NAME        READY   STATUS   VERSION    RECONCILED VERSION   MESSAGE                        AGE
+   apim-demo   6/6     Ready    10.0.7.0   10.0.7.0-5560        API Connect cluster is ready   14h
+   ```
+5. Configure APIC integration with Instana:
+   ```
+   scripts/07e-apic-instana-config.sh
+   ```
+6. Configure the email server in APIC:
+   ```
+   scripts/07f-apic-initial-config.sh
+   ```
+7. Create a Provider Organization for admin user:
+   ```
+   scripts/07g-apic-new-porg-cs.sh
+   ```
+</details>
+&nbsp;
