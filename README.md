@@ -13,7 +13,7 @@ sudo apt install ssh
 ```
 sudo apt install git
 ```
-- curl command
+- Curl command
 ```
 sudo apt install curl
 ```
