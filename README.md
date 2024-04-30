@@ -716,7 +716,7 @@ Deploy App Connect:
    ace-dashboard   12.0.10.0-r3      1          false          Ready    https://ace-dashboard-ui-tools.apps.6597480c8e1478001153ba0d.cloud.techzone.ibm.com   3d23h
    ```
 4. Deploy Designer Authoring instance:  
-   1. Deploy Designer Authoring instance (optional)
+   1. Deploy Designer Authoring instance
    ```
    oc create -f instances/${CP4I_VER}/${OCP_TYPE}/08-ace-designer-local-ai-instance.yaml
    ```
@@ -745,7 +745,7 @@ Deploy App Connect:
       ```
       oc get integrationruntimes -n tools
       ```
-8. Configure Sales Force Connector (optional):
+8. Configure Sales Force Connector:
       1. Set Environment Variables:  
          ```
          export SF_USER=fnaranjo@fxn.com
