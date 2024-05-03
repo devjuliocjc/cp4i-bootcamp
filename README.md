@@ -848,7 +848,7 @@ Install License Service:
    ```
    oc create -f resources/00-license-service-operatorgroup.yaml
    ```
-4. Install License Service Operator:
+4. Install License Service Operator (this may take 8 minutes):
    ```
    oc create -f subscriptions/${CP4I_VER}/00-license-service-subscription.yaml
    ```
