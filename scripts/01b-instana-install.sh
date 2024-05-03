@@ -11,6 +11,7 @@ oc new-project instana-agent
 oc adm policy add-scc-to-user privileged -z instana-agent -n instana-agent
 
 oc create -f resources/01f-instana-agent-subscription.yaml
+echo "Waiting 60 seconds..."
 sleep 60
 
         #########################
