@@ -74,6 +74,9 @@ Set environment variables:
 </details>
 &nbsp; 
 
+> [!IMPORTANT]
+> You must be logged in to the cluster before executing the following commands
+
 <details>
 <summary>
 Set a default storage class for your cluster:
