@@ -664,7 +664,7 @@ Deploy Enterprise Messaging - MQ:
    NAME        PHASE
    qmgr-demo   Running
    ```
-7. Deploy Kafka Connect MQ Connectors (optional):
+7. Deploy Kafka Connect MQ Connectors:
    1. MQ Source Connector:
       ```
       oc create -f resources/02b-es-mq-source.yaml
