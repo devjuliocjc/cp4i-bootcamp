@@ -27,4 +27,6 @@ sleep 60
             sh > instana-agent.yaml
         oc create -f instana-agent.yaml
         rm -fr instana-agent.yaml
+echo "Waiting 60 seconds..."
+sleep 60
 echo "Done!"
