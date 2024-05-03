@@ -4,8 +4,8 @@ echo "Installing Tracing dependencies..."
 oc create -f resources/01a-tracing-platform-namespace.yaml
 oc create -f resources/01b-tracing-platform-operatorgroup.yaml
 oc create -f resources/01c-tracing-platform-subscription.yaml
-echo "Waiting 120 seconds..."
-sleep 120
+echo "Waiting 90 seconds..."
+sleep 90
 oc create -f resources/01d-tracing-data-collection-subscription.yaml
 echo "Waiting 60 seconds..."
 sleep 60
