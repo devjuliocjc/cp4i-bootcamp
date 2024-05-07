@@ -55,6 +55,14 @@ You also need an account in the folllowing email service to configure APIC:
    - Username: kubeadmin
    - Password: FqDBn-FnWIz-I9CFV-AhT29
 
+-  https://console-openshift-console.apps.663535e491acca001e042bc0.cloud.techzone.ibm.com
+   - Username: kubeadmin
+   - Password: R3Io8-apSvr-uVgvS-Jhv2m
+
+-  https://console-openshift-console.apps.663536b291acca001e042bc2.cloud.techzone.ibm.com
+   - Username: kubeadmin
+   - Password: DAbrq-3D3Ed-gcYde-I2yJq
+
 ## Components Installation
 
 
