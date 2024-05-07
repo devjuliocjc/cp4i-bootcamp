@@ -37,29 +37,34 @@ You also need an account in the folllowing email service to configure APIC:
 > [!NOTE]
 > Openshift Clusters Credentials
 
--  https://console-openshift-console.apps.6638d9945291bf001ec9fc15.cloud.techzone.ibm.com
-   
+-  TEAM 1
+   - URL: https://console-openshift-console.apps.6638d9945291bf001ec9fc15.cloud.techzone.ibm.com
    - Username: kubeadmin
    - Password: EyALk-Zqcn8-ZxubG-JwuPL
 
 
--  https://console-openshift-console.apps.6635415f91acca001e042bcc.cloud.techzone.ibm.com
+-  TEAM 2
+   - URL: https://console-openshift-console.apps.6635415f91acca001e042bcc.cloud.techzone.ibm.com
    - Username: kubeadmin
    - Password: iF8N3-NjD3U-PiMGJ-GbXXa
 
--  https://console-openshift-console.apps.6635465e5291bf001ec9f60e.cloud.techzone.ibm.com
+-  TEAM 3
+   - URL: https://console-openshift-console.apps.6635465e5291bf001ec9f60e.cloud.techzone.ibm.com
    - Username: kubeadmin
    - Password: S2Kkv-kbsuk-rmW8i-ufu9d
 
--  https://console-openshift-console.apps.6635192691acca001e042bac.cloud.techzone.ibm.com
+-  TEAM 4
+   - URL: https://console-openshift-console.apps.6635192691acca001e042bac.cloud.techzone.ibm.com
    - Username: kubeadmin
    - Password: FqDBn-FnWIz-I9CFV-AhT29
 
--  https://console-openshift-console.apps.663535e491acca001e042bc0.cloud.techzone.ibm.com
+-  TEAM 5
+   - URL: https://console-openshift-console.apps.663535e491acca001e042bc0.cloud.techzone.ibm.com
    - Username: kubeadmin
    - Password: R3Io8-apSvr-uVgvS-Jhv2m
 
--  https://console-openshift-console.apps.663536b291acca001e042bc2.cloud.techzone.ibm.com
+- TEAM 6
+   - URL: https://console-openshift-console.apps.663536b291acca001e042bc2.cloud.techzone.ibm.com
    - Username: kubeadmin
    - Password: DAbrq-3D3Ed-gcYde-I2yJq
 
