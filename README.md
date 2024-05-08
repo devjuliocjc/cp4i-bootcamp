@@ -938,3 +938,20 @@ Install License Service:
    scripts/99-lsr-console-access-info.sh
    ```
 </details>
+
+```
+{
+  "metadata": {
+    "code": "001"
+  },
+  "payload": {
+    "id": "001",
+    "fname": "Francisco",
+    "lname": "Naranjo",
+    "email": "fnaranjo@ec.ibm.com",
+    "phone": "(593) 992-5345816",
+    "company": "IBM",
+    "comments": "Cloud Pak for Integration"
+  }
+}
+```
