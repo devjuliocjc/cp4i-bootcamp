@@ -299,7 +299,7 @@ Create namespaces with the corresponding entitlement key:
 
 1. Set your entitlement key:
    ```
-   export ENT_KEY=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJJQk0gTWFya2V0cGxhY2UiLCJpYXQiOjE1Nzg2ODgyNTksImp0aSI6IjdmYmZiMTM3NGFlNTQyOWZhOTM2MDdlOGUwYTcyNDU5In0.sd_sOTRpEsR3u9cxV_rR4jsxq4tuN6YHcyVmE8AngcQ
+   export ENT_KEY=<key>
    ```
 2. Create namespaces:
    ```
